@@ -30,6 +30,12 @@ public class 예제문제0913 {
 	    System.out.println("a가 b보다 작은 가요 ?" + (a<b));
 	    System.out.println("a가 b와 같은면서 3보다 큰가요?" + (a==b && a>3));
 	    System.out.println("a가 50이 아닌가요? " + (a!=50));
+	    
+	    //두개의 print 차이 기억하기
+	    System.out.println("System.out.printf(\"a의 값: %d \\n\", a);"); 
+	    System.out.printf("a의 값: %d \n", a);
+	    System.out.println("System.out.println(\"a의 값: \"+ a); "); 
+	    System.out.println("a의 값: "+ a);   
 
 	}
 
