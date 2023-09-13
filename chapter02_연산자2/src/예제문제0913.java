@@ -2,11 +2,12 @@
 public class 예제문제0913 {
 
 	public static void main(String[] args) {
-	    int num1=(int)(Math.random()*100)+1;
-	    int num2=(int)(Math.random()*100)+1;
+		
+	    int num1=(int)(Math.random()*100);
+	    int num2=(int)(Math.random()*100);
 	    int re1=num1-num2;
 	    int re2=num1*num2;
-	    System.out.println("num1 : "+num1+" ,num2 : "+num2);
+	    System.out.println("첫번째정수 : "+num1+", 두번째 정수 : "+num2);
 	    System.out.println("뺄셈 : "+re1);
 	    System.out.println("곱셈 : "+re2);
 	    
