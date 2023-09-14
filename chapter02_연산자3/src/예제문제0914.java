@@ -33,23 +33,38 @@ public class 예제문제0914 {
 	    System.out.println(b); 
 	    System.out.println((int)ch);
 	    
-	    //선생님풀이1 : scan과 charAt(0)사용
+	    //선생님풀이 : scan과 charAt(0)사용
 		Scanner scan=new Scanner(System.in);
 		System.out.print("문자 입력 : ");
-		char ch=scan.next().charAt(0);//char받아오는법
+		char ch=scan.next().charAt(0);
+	    //**charAt(0)=랜덤 숫자중 0번째 숫자를 가져오는것 462989이면 4를가져옴
 		System.out.print("ch="+ch);
 		boolean b=(ch>='A' && ch<='Z' || ch>='a' && ch<='z' || ch>='0' && ch<='9'?true:false);
 		System.out.println(b);
 	    */
 		
 		//3. 대문자를 소문자로 변경하는 코드, 문자 ch에 저장된 문자가 대문자인 경우에만 소문자로 변경한다. 
-		char ch = 'H'; 
+		/*char ch = 'A'; 
 	    char lowerCase = ch>='A' && ch<='Z'?(char)(ch+32):ch; 
 	    System.out.println("ch : " + ch); 
 	    System.out.println("ch to lowerCase : " + lowerCase);
-	    System.out.print((int)ch>=97?"입력값이 소문자입니다.":"");
+	    System.out.print((int)ch>=97?"입력값이 소문자입니다.":"");*/
+	    
+	    //선생님풀이 : scan과 charAt(0)사용
+	  	//Scanner scan=new Scanner(System.in);
+	  	//System.out.print("문자 입력 : ");
+	  	//char ch=scan.next().charAt(0);
+	    //**charAt(0)=랜덤 숫자중 0번째 숫자를 가져오는것 462989이면 4를가져옴
+	  	//System.out.print("ch="+ch);
+	    //char lowerCase=(ch>='A' && ch<='Z'?(char)(ch+32):ch)
+	  	//System.out.println("변경된 값 : "+lowerCase);
 
-		
+		//이건 대문자를 소문자로 바꾸는 구조
+	    char ch = 'b'; 
+	    char upperCase = ch>='a' && ch<='z'?(char)(ch-32):ch; 
+	    System.out.println("ch : " + ch); 
+	    System.out.println("ch to UpperCase : " + upperCase);
+	    System.out.print((int)ch<=96?"입력값이 대문자입니다.":"");
 
 	}
 
