@@ -96,7 +96,7 @@
  *              
  *      반복제어문
  */
-public class 제어문_반복문_1 {
+public class 제어문_반복문1 {
 
 	public static void main(String[] args) {
 		System.out.println("Hello For문");
