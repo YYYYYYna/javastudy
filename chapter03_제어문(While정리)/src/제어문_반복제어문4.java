@@ -24,15 +24,12 @@
  *                    데이터 보호(캡슐화)
  *                    재사용 (상속 : is-a, 포함 : has-a)
  *                    수정, 추가
- *                    오버라이징(=변경), 오버로딩(=추가)
- *                    
- *                    
- *         
+ *                    오버라이징(=변경), 오버로딩(=추가)   
  */
 public class 제어문_반복제어문4 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
