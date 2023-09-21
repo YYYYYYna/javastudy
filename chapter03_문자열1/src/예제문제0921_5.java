@@ -8,14 +8,15 @@ public class 예제문제0921_5 {
 		Scanner scan=new Scanner(System.in);
 		int sum=0;
 		
-		
 		for(int i=1;i<=10;i++)
 		{
-			System.out.println("1에서 10사이의 정수를 입력하시오 : ");
-			int num=scan.nextInt();
+			int num= (int)(Math.random()*10)+1;
+			//System.out.println("1에서 10사이의 정수를 입력하시오 : ");
+			//int num=scan.nextInt();
 			sum+=num;
 		}
-		double avg=sum/10;
-		System.out.println("평균 : "+avg);
+		//double avg=sum/10;
+		//System.out.println("평균 : "+avg);
+		System.out.println("평균 : "+sum/10.0);
 	}
 }

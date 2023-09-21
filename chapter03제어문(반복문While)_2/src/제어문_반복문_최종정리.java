@@ -92,20 +92,20 @@ public class 제어문_반복문_최종정리 {
 	    *     **
 	    *      *
 	    *  
-	    *     j     i     k
+	    *     k     i     j
 	    *    공백   줄수   별표
 	    *     0     1     4
 	    *     1     2     3
 	    *     2     3     2
 	    *     3     4     1
 	    *    --------
-	    *    i=j+1 => j=i-1
+	    *    i=k+1 => k=i-1
 	    *          ---------
-	    *          i+k=5 => k=5-i
+	    *          i+j=5 => j=5-i
 	    */
 	   for(int i=1;i<=4;i++)
 	   {
-		   for(int k=1;k<=i;k++)
+		   for(int k=1;k<=i-1;k++)
 		   {
 			   System.out.print(' ');
 			   

@@ -4,7 +4,7 @@ public class 예제문제0921_4 {
 		int sum=0,i=1;
 		while (true) 
 		{
-		    if(i==51) 
+		    if(i>50) 
 		    {
 		    	break;	
 		    }
