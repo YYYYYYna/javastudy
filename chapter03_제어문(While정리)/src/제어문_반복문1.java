@@ -38,11 +38,30 @@
  *                              : do~while은 증감식을 실행하고 조건문을 실행
  *                
  *     --------- <반복문의 종류>
+ *     아래의 반복문 형식 비교하면서 암기하기
  */
 public class 제어문_반복문1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		System.out.println("각각 다른 형식이지만 같은 결과값이 나옴");
+		System.out.println("========== for ==========");
+		for(int i=1;i<=10;i++)
+		{
+			System.out.print(i+" ");
+		}
+		System.out.println("\n========== while ==========");
+		int i=1;
+		while(i<=10)
+		{
+			System.out.print(i+" ");
+			i++;
+		}
+		System.out.println("\n========== do~while ==========");
+		int j=1;
+		do {
+			System.out.print(j+" ");
+			j++;
+		}while(j<=10);
 
 	}
 
