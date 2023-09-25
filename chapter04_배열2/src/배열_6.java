@@ -18,7 +18,7 @@ public class 배열_6 {
 		{
 			a[i]=(int)(Math.random()*100)+1;
 		}*/
-		//중복을 보기 위해 임의로 배열 할당하기
+		//중복출력여부를 확인하기 위해 임의로 배열 할당하기
 		int[] a={10,20,10,30,40,50,30,10,30,50};
 		
 		System.out.println("===== 저장된 값 =====");
@@ -26,7 +26,6 @@ public class 배열_6 {
 		
 		//총합과 평균 구하기
 		int sum=0;
-		double avg=0;
 		for(int i:a)
 		{
 			sum+=i;
