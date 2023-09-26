@@ -49,10 +49,47 @@
  *          toCharArray() => char[]
  *      
  */
+
+//여러함수들예제
+import java.util.Arrays;
 public class 문자열_1 {
 
 	public static void main(String[] args) {
-		System.out.println(Math.random());
+		//기능처리 => 메소드 : 기능처리한후에 반드시 결과값을 보내준다
+		//결과값 : 리턴형
+		//결과값 잘 모르면 마우스 가까이 가져가면 도움말로 써있음
+		//ex.Math.random() => 결과값은 double(0.0~1.0)로 나옴 
+		//String => char[] toCharArray (=String형을 char형 '배열'로 바꿔줌)
+		
+		//String을 char로 변경 : toCharArray()
+		/*String s="Hello Java";
+		System.out.println(s);
+		char[] c=s.toCharArray(); //s.에서 .은 왼쪽을 오른쪽으로 변경한다는뜻
+        System.out.println(Arrays.toString(c));*/
+		
+		//char을 String로 변경 : valueOf()
+		/*char[] arr=new char[10];
+		for(int i=0;i<arr.length;i++)
+		{
+			arr[i]=(char)((Math.random()*26)+65);
+		}
+		System.out.println(Arrays.toString(arr));
+		String s=String.valueOf(arr);
+		System.out.println(s);*/
+		
+		//String을 한글자로 읽어오기 : charAt()
+		/*
+		 *    Hello Java
+		 *    0123456789
+		 *    
+		 *    charAt(4) => 'o'
+		 */
+		String s="Hello Java";
+		for(int i=0;i<10;i++)
+		{
+			char c=s.charAt(i);
+			System.out.println("c="+c);
+		}
 
 	}
 
