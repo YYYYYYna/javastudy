@@ -2,7 +2,6 @@ import java.util.*;
 public class 배열_3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
         int[] arr= {10,20,30,40,50};
         //         100,200,300
         // arr의 메모리에 있는 모든 내용을 copy해서 새로운 메모리에 저장 

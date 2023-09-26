@@ -9,13 +9,13 @@ import java.util.*;
 public class 배열_4 {
     // int data1,data2...data100
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
         int[] data=new int[100];
         for(int i=0;i<data.length;i++)
         {
         	data[i]=(int)(Math.random()*10);
         }
         System.out.println(Arrays.toString(data));
+        
         // 빈도수 구하기 
         int[] count=new int[10];
         for(int i=0;i<data.length;i++)

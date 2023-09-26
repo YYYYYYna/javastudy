@@ -5,7 +5,7 @@
 
 /*
  *  3명의 학생 => 국,영,수 점수입력 => 총점, 평균, 학점, 등수 출력
- *                                              ----배열이있어야지만구할수있음
+ *                                           ----배열이있어야지만구할수있음
  *           => 1차배열은 기능별로 나누는게 좋음
  */
 import java.util.Scanner;
@@ -64,8 +64,7 @@ public class 배열_3 {
 				score[i]='F';
 			}
 		}
-		//등수 구하기 (sort이용)
-		//java.util.Arrays.sort(avg);
+		
 		//등수 구하기 (2차 for문 이용)
 		for(int i=0;i<kor.length;i++)
 		{

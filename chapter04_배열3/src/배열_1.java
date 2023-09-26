@@ -13,9 +13,9 @@
  * 				100				0 	0 	0	0	0
  * 			   ----			-----------------------
  * 				메모리 주소를 이용해서 데이터를 제어 ==> 참조변수
- * 												------
- * 												1. 배열
- * 												2. 클래스
+ * 											  ------
+ * 											  1. 배열
+ * 											  2. 클래스
  * 				=> 데이터형의 형변환
  * 					double[] arr={10,20,'A','B',30}
  * 					=> arr[0]=10.0
@@ -43,7 +43,6 @@
 public class 배열_1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		// 얕은 복사 => Call By Reference
 		int[] arr=new int[5];
 		// 0으로 초기화 => 연속적인 메모리 구조

@@ -41,7 +41,7 @@ public class 배열_6 {
 			if(max<i)
 				max=i;
 			if(min>i)
-				max=i;
+				min=i;
 		}
 		System.out.print("\n최대값 : "+max);
 		System.out.print("\n최소값 : "+min);

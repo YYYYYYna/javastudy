@@ -2,7 +2,6 @@ import java.util.*;
 public class 배열_2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
         int[] arr={10,20,30,40,50};
         int[] arr2=arr;
         // 같은 배열의 메모리를 제어 
