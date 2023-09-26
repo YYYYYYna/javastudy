@@ -18,7 +18,7 @@ public class 배열_6 {
 				{
 					int temp=arr[k];
 					arr[k]=arr[k+1];
-					arr[k+1]=temp;
+					arr[k+1]=(char)temp;//데이터형변환해야함
 				}
 			}
 		}
