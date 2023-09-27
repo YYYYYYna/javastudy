@@ -47,7 +47,6 @@ public class 문자열_2 {
 		{
 			System.out.println(msg+"는/은 대칭구조가 맞다.");
 		}
-
 	}
 
 }
