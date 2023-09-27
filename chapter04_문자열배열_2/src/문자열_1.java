@@ -108,7 +108,7 @@
  *                                       ------정규식           
  */
 import java.util.Scanner;
-public class 문자열배열_1 {
+public class 문자열_1 {
 
 	public static void main(String[] args) {
 		//문자열_1 a=new 문자열_1();//=클래스저장
@@ -166,7 +166,7 @@ public class 문자열배열_1 {
 		*/
 		
 		int i=0;//i를 활용하려면 for문밖에 있어야함/이걸로인덱스값도출가능
-		for(int i=0;i<names.length;i++)
+		for(i=0;i<names.length;i++)
 		{
 			if(names[i].equals(name))
 			{
