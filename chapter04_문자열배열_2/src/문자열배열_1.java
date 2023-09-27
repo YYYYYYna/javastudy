@@ -85,36 +85,97 @@
  *    
  *    => toString() : 생략이 가능 => 객체의 주소값 출력(원시값반환)
  *       문자열_1 a=new 문자열_1();//=클래스저장
-		 System.out.println(a);//toString이 생략되도 아래와 같은 결과가 나옴
-		 System.out.println(a.toStirng);
-		 
-      => indexOf() : 지정된 문자위치값 확인 (문자index 0번부터)
-         => 원형 : int indexOf(char)
-                  int indexOf(String s)
-      
-      => lastIndexOf() : 지정된 문자위치값 확인 (문자index length()-1번부터)
-         => 원형 : int lastIndexOf(char)
-                  int lastIndexOf(String s)
-          
+ *		 System.out.println(a);//toString이 생략되도 아래와 같은 결과가 나옴
+ *		 System.out.println(a.toStirng);
+ *		 
+ *    => indexOf() : 지정된 문자위치값 확인 (문자index 0번부터)
+ *        => 원형 : int indexOf(char)
+ *                int indexOf(String s)
+ *     
+ *    => lastIndexOf() : 지정된 문자위치값 확인 (문자index length()-1번부터)
+ *       => 원형 : int lastIndexOf(char)
+ *                int lastIndexOf(String s)
+ *         
  *    => concat() : 문자열결합(+) 주로 오라클에서 쓰임
  *       => 원형 : String concat(String s)
  *       
  *    => split() : 특정 문자를 중심으로 잘라서 배열에 저장
+ *       => 원형 : String[] split(Sting regex)
+ *                                    ------정규식
  *    
- *    
- *    
- *              
- *              
- *                  
- *    
- *                
+ *    => replaceAll() : 문자열 반환
+ *       => 원형 : String replaceAll(Sting regex)
+ *                                       ------정규식           
  */
+import java.util.Scanner;
 public class 문자열배열_1 {
 
 	public static void main(String[] args) {
-		문자열_1 a=new 문자열_1();//=클래스저장
-		System.out.println(a);//toString이 생략되도 아래와 같은 결과가 나옴
-		System.out.println(a.toStirng);
+		//문자열_1 a=new 문자열_1();//=클래스저장
+		//System.out.println(a);//toString이 생략되도 아래와 같은 결과가 나옴
+		//System.out.println(a.toStirng);
+		
+		String[] names= {"홍길동","박문수","심청이","이순신","강감찬"};
+		//char와 다르게 문자저장에 제한이 없음 문자열로도 따로 저장 가능
+		/*
+		 *    Stack             Heap
+		 *    names             names[0]  name[1]  name[2]  name[3]  name[4]
+		 *   -------            --------------------------------------------
+		 *     100               "홍길동" | "박문수" | "심청이" | "이순신" | "강감찬"
+		 *   -------            |-------------------------------------------
+		 *                    메모리주소(100)
+		 *    1. 선언
+		 *       데이터형[] 배열명
+		 *    2. 초기값
+		 *       데이터형[] 배열명={데이터};
+		 *       데이터형[] 배열명=new 데이터형[갯수]
+		 *       배열명[0]=""
+		 *       for문
+		 *       난수발생
+		 *       :
+		 *    3. 활용 / 변경,출력
+		 *                ---for-each
+		 *       배열명[0]="" => 변경
+		 */
+		
+		//for-each : 실제저장값 이용해서 출력하기 (속도 더 빠름)
+		for(String name:names) //실제 저장된값 가져옴 (index값아님)
+		{
+			System.out.println(name);
+		}
+		//for문 : index값으로 출력하기 (조건이 있을때 유용)
+		for(int i=0;i<names.length;i++)
+		{
+			System.out.println(names[i]);
+		}
+		
+		System.out.println("======================");
+		Scanner scan=new Scanner(System.in);
+		System.out.println("이름 입력 : ");
+		String name=scan.next();
+		int index=0;//=count와 같은역할을 수행
+		/*for(String n:names)
+		{
+			if(n.equals(name))
+			{
+				break;
+			}
+			index++;//검색한 String이 몇번째 index 번호인지 출력하는 프로그램
+		}
+		System.out.println(name+"는/은 "+(index+1)+"번째 있습니다.");
+		*/
+		
+		int i=0;//i를 활용하려면 for문밖에 있어야함/이걸로인덱스값도출가능
+		for(int i=0;i<names.length;i++)
+		{
+			if(names[i].equals(name))
+			{
+				//index=i;
+				break;
+			}
+			index++;//검색한 String이 몇번째 index 번호인지 출력하는 프로그램
+		}
+		System.out.println(name+"는/은 "+(i+1)+"번째 있습니다.");
 
 	}
 
