@@ -11,6 +11,9 @@
  *        split()
  *        ------------------------------------------
  */
+
+//불법으로 유튜브 영상 링크 크롤링 하는법 
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,9 +41,12 @@ public class 문자열_1 {
 			System.out.println("곡명 : "+title.get(i).text());
 			System.out.println("가수명 : "+artist.get(i).text());
 			System.out.println("앨범명 : "+album.get(i).text());
-			String msg=(i+1)+"|"+title.get(i).text()+"|"+artist.get(i).text()+"|"+album.get(i).text()+"|"+youtubeData(title.get(i).text());
+			String msg=(i+1)+"|"+title.get(i).text()+"|"+artist.get(i).text()+"|"+album.get(i).text()+"|"+youtubeData(title.get(i).text())+"\r\n";
 			//=>이게 선생님이 배포해주신 seoul_location같은 파일 형식으로 바꾸는 과정임
 			System.out.println(msg);
+			FileWriter fw=new FileWriter("c:\\javaDev\\genie.txt",true);
+			fw.write(msg);
+			fw.close();
 		}
 
 	}
