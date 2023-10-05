@@ -1,6 +1,5 @@
 //  5개의 정수를 받아서 => max와 min을 찾아보기
 
-
 import java.util.*;
 public class 메소드_5 {
 	//1. 5개의 정수를 받아서
