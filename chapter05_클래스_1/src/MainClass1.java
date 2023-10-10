@@ -179,7 +179,7 @@ class Student
 	int math;
 	//멤버변수사용 => 기본형, 클래스, 배열
 }
-public class MainClass {
+public class MainClass1 {
 
 	public static void main(String[] args) {
 		//b. 배열로 데이터 모으기
