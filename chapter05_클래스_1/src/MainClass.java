@@ -66,7 +66,7 @@
  *            ------------------------
  *            
  *         ------------------------------------------------------------   
- *              변수유형        선언위치        메모리저장        사용범위
+ *               변수유형        선언위치        메모리저장        사용범위
  *         ------------------------------------------------------------ 
  *          ① 인스턴스변수 : 클래스를 메모리에 저장한 상태  
  *                     : class ClassName
@@ -110,6 +110,11 @@
  *                    -----
  *                    -----
  *                    -----
+ *                    static int a;
+ *                    : 만약에 클래스 안에 static 변수가 들어가면 어느 데이터에서도 접근이 가능
+ *                    : 이런 변수는 CGV 같은 모든 영화에 해당되는 내용이 있어야함
+ *                    : 카드게임의 경우에는 카드크기를 static으로 잡음 한개가 달라지면 모두 달라져야함
+ *                    : [공통으로 사용하는 값을 static으로 설정함] = 데이터정규화
  *                 }
  *                 **한개의 데이터형(틀)을 만들고
  *                 Movie m1=new Movie();
@@ -120,22 +125,151 @@
  *                 **각각의 영화를 저장할수 있도록 데이터를 따로 저장함
  *                 [활용시]
  *                  m1.변수명(.은주소접근연산자)
- *                 [해제시]
+ *                 [해제시] 
  *                  m1=null
+ *                  (ex.해당영화가내려갈때,학생들의점수모음이라면전학갈때)
  *         ------------------------------------------------------------ 
  *         **오늘 이후 이번주에 나갈 내용**   
  *         3) 메소드 처리 방법
  *         4) 생성자 확인
+ *         ~~~~~~~~~~~~~(객체지향)
  *         5) 초기화 블록
  *         6) 클래스의 종류
  *         7) 라이브러리
- *         8) 예외처리
+ *         8) 예외처리 : 비정상종료를 하지 않도록 처리
  */
+
+//  학생 클래스 만들기 => 이름, 국,영,수 점수
+/*
+ *    파일명은 .java
+ *          ------
+ *          => 클래스명과 동일(대소문자 구분)
+ *          A.java , a.java
+ *          
+ *    한 파일 안에 여러개의 클래스를 사용할 수 있다.
+ *    **public이 있는 경우
+ *    class A
+ *    public class B
+ *    --------------public class는 한 파일에 1개만 사용 가능
+ *                  ------------가 파일명이 됨
+ *    
+ *    **public이 없는 경우
+ *    class A
+ *    class B
+ *    ------- public이 없는 경우 저장명은 A.java , B.java
+ *    ------- 일반 => 저장명은 main이 있는 클래스를 저장명으로 설정
+ *    
+ *    **같은폴더(src)에 저장된 경우
+ *    class A
+ *    public class MainClass1
+ *    
+ *    class A
+ *    public class MainClass2
+ *    -----------------------=> 오류남 (A는 이미 사용중)
+ */
+import java.util.*;
+//a. 클래스로 데이터 모으기
+//가급적이면 따로 클래스를 만들기를 권장
+//new를 이용하면 저장공간을 따로 만들 수 있다.
+class Student
+{
+	String name;
+	int kor;
+	int eng;
+	int math;
+	//멤버변수사용 => 기본형, 클래스, 배열
+}
 public class MainClass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		//b. 배열로 데이터 모으기
+		String[] names=new String[3];
+		int[] kor=new int[3];
+		int[] eng=new int[3];
+		int[] math=new int[3];
+		//한명에 대한 정보 => index가 같은 것을 이용한다.
+		/*
+		 *   names
+		 *  -------       --names[0]----names[1]----names[2]--
+		 * @6504e3b2  ==> |          |            |
+		 *  -------       |----------|------------|----------
+		 *                @6504e3b2   @6504e3b2+4   @6504e3b2+8
+		 *                
+		 *  모든 클래스는 변수선언시 => 4byte(주소)
+		 */
+		//System.out.println(names);
+		
+		//[입력부분]
+		/*Scanner scan=new Scanner(System.in);
+		for(int i=0;i>3;i++)
+		{
+			System.out.println((i+1)+"번째 이름 입력 : ");
+			names[i]=scan.next();
+			System.out.println((i+1)+"번째 국어 입력 : ");
+			kor[i]=scan.nextInt();
+			System.out.println((i+1)+"번째 영어 입력 : ");
+			eng[i]=scan.nextInt();
+			System.out.println((i+1)+"번째 수학 입력 : ");
+			math[i]=scan.nextInt();
+		}
+		//[출력부분]
+		for(int i=0;i>3;i++)
+		{
+			System.out.printf("%-5d%-5d%-5d%-7d%-7.2f\n",
+					kor[i],eng[i],math[i],
+					kor[i]+eng[i]+math[i],
+					(kor[i]+eng[i]+math[i])/3.0);
+		}*/
+		
+		//[클래스 이용] : 사용자 정의 데이터형
+		
+		//      |변수명=구분을위해서"인스턴스/객체"라고함  
+		//      ↓    ↓초기화
+		Student hong=new Student();
+		//int    a  = 10 과 같은 의미
+		hong.name="홍길동";
+		hong.kor=99;
+		hong.eng=99;
+		hong.math=99;
+		System.out.println("hong주소 = "+hong);
+		System.out.println(hong.name+" "+hong.kor+" "+hong.eng+" "+hong.math+" "
+		                   +(hong.kor+hong.eng+hong.math)+" "
+		                   +(hong.kor+hong.eng+hong.math)/3.0);
+		/*
+		 *  [stack:주소]                [heap:실제데이터]
+		 *     hong
+		 *    -------                  new Student()
+		 *   @515f550a    
+		 *    -------   =>  @515f550a  ----names----
+		 *    
+		 *                             -----kor-----
+		 *                
+		 *                             -----eng-----
+		 *                
+		 *                             -----math-----
+		 *                  
+		 *                    hong.name , hong.kor , hong.math
+		 *                
+		 */
+		
+		Student shim=new Student();
+		shim.name="심청";
+		shim.kor=88;
+		shim.eng=88;
+		shim.math=88;
+		System.out.println("shim주소 = "+shim);
+		System.out.println(shim.name+" "+shim.kor+" "+shim.eng+" "+shim.math+" "
+                +(shim.kor+shim.eng+shim.math)+" "
+                +(shim.kor+shim.eng+shim.math)/3.0);
+		
+		Student park=new Student();
+		park.name="박문수";
+		park.kor=77;
+		park.eng=77;
+		park.math=77;
+		System.out.println("park주소 = "+park);
+		
+		
 	}
 
 }
