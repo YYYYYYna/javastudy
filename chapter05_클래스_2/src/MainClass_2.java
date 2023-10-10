@@ -1,3 +1,9 @@
+/*
+ *  기존의 달력만들기 메소드를
+ *  전역변수를 사용해서 리턴형/매개변수 상관안쓰고
+ *  더 쉽게 만드는 방법...
+ */
+
 import java.util.*;
 
 public class MainClass_2 {
@@ -81,9 +87,6 @@ public class MainClass_2 {
 		userInput();
 		dayTotal();
 		print();
-		
-		
-
 	}
 
 }
