@@ -6,6 +6,7 @@ package com.sist.main;
 
 import java.util.*;
 import java.io.*;//입출력관련
+//일반데이터형 => 사용자정의데이터형 => 제공이안됨 => 직접제작
 
 //music의 일반 데이터형 생성
 class Music
@@ -63,7 +64,7 @@ class MusicData
 	
 	
 }
-public class MusicMain {
+public class MusicMain_genie_youtube {
 
 	public static void main(String[] args) {
 		MusicData md=new MusicData();
