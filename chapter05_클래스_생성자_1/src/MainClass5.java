@@ -21,7 +21,7 @@ class Join
 	String address;
 	String phone;
 	
-	//초기값
+	//초기값(생성자 사용)
 	Join(int mno, String name, String address, String phone){
 		this.mno=mno;
 		this.name=name;
@@ -59,7 +59,7 @@ public class MainClass5 {
 		System.out.println("------");
 		
 		JoinSystem js2=new JoinSystem(); //=> static이 없는 경우는 해당 부분 메모리가 따로생김
-		Join j2=new Join(2, "심청", "경기", "010-2222-2222");
+		Join j2=new Join(2, "심 청", "경기", "010-2222-2222");
 		js2.member[1]=j2;
 		for(int i=0;i<js2.member.length;i++)
 		{
