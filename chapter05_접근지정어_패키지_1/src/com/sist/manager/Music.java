@@ -20,6 +20,15 @@ public class Music {
 	
 	//변수
 	private String title;
+	/*
+	 *    public void setTitle(String title)
+	 *    {
+	 *        this.title=title;
+	 *    }
+	 *    
+	 *    변수저장/값읽기 => 주로 메소드(set000 혹은 get000으로 만듬)
+	 */
+	
 	//@Setter 이렇게두면 singer부분만 만들어짐
 	private String singer;
 	private String album;
