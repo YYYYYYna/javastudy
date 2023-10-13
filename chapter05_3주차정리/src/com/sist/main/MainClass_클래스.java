@@ -301,7 +301,7 @@ package com.sist.main;
  *      -------------------------------------------------------------------[교재기준8장 기본문법내용]
  *      
  */
-public class MainClass {
+public class MainClass_클래스 {
 	int a=100;
 	public static void aaa()
 	{
@@ -309,7 +309,7 @@ public class MainClass {
 		//System.out.println(a); //오류남
 		
 		//static에서 인스턴스는 객체생성 후 사용해야함
-		MainClass m=new MainClass();
+		MainClass_클래스 m=new MainClass_클래스();
 		System.out.println(m.a);
 	}
 
