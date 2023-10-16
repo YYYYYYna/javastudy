@@ -21,12 +21,12 @@ public class MainClass_1 {
 		System.out.println("b");
 	}
 	//일단은 받을수 있는 가장 큰 값을 가져오고
-	/*
+	
 	void display(double d, double d1, double d2)
 	{
 	    System.out.println("c");	
 	}
-	*/
+	
 	
 	//위처럼 근사치가 없다면 가장 비슷한 값을 가져옴
 	void display(double d, int d1, int d2)
