@@ -122,7 +122,22 @@ package com.sist.main;
  *                                                               예)
  *                                                                 class A
  *                                                                 {
- *                                                                    [사진으로찍어둠~~~~]
+ *                                                                    private int a;
+ *                                                                    static int b;
+ *                                                                    public void aaa()
+ *                                                                    {
+ *                                                                       a,b,aaa()
+ *                                                                    }
+ *                                                                    public static void bbb()
+ *                                                                    {
+ *                                                                       b =>사용 가능!
+ *                                                                       
+ *                                                                       //a,aaa() =>사용 불가능!
+ *                                                                       
+ *                                                                       A aa=new A();
+ *                                                                       aa.a
+ *                                                                       aa.aaa() =>이렇게 해야 사용 가능!
+ *                                                                    }
  *                                                                 }
  *                    ~초기화블록~ : 자동호출
  *                    = 인스턴스블록
