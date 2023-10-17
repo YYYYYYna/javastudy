@@ -77,20 +77,16 @@ package com.sist.main;
  *                     
  *                     상위클래스에 하위클래스를 대입하면(상위클래스=하위클래스)
  *                     변수는 상위클래스를 따라가고
- *                     메소드는 하위클래스를 따라감~~~(상위클래스에있는메소드만!)
- *                     
- *                     
- *                                                                  
- *               
+ *                     메소드는 하위클래스를 따라감~~~(상위클래스에있는메소드만!)       
  */
 
 class A
 {
-	int a,b;
+	int a=10,b=10;
 	void aaa() {System.out.println("A:aaa() Call");}
 	void bbb() {System.out.println("A:bbb() Call");}
 }
-class B
+class B extends A
 {
 	int a=100,b=200,c=300,d=400;
 	void aaa() {System.out.println("B:aaa() Call");}
