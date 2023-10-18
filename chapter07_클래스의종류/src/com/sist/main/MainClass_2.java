@@ -2,6 +2,7 @@ package com.sist.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 /*
  *      지금까지 배웠던건 사용자 정의 일반 클래스였음
@@ -26,6 +27,7 @@ import java.util.List;
  *         
  *         = 주목적) 
  *           관련된 클래스를 모아서 관리(서로다른 클래스를 연결해서 사용)
+ *           클래스 끼리 독립된 관계를 유지해서 한곳에서 에러가 나도 다른곳에는 영향을 끼치지 않음(=결합성이낮은프로그램)
  *           
  *         = 미완성 클래스 : 메소드를 구현하지 않는 경우 => 선언만 한 경우
  *                     : 이 경우 new를 이용하여 메모리 할당이 불가능
@@ -89,11 +91,164 @@ import java.util.List;
  *         :인터페이스도 클래스임 그러나 다른점은 "다중상속"이 가능하단점
  *         
  *      3) 내부 클래스
+ *      
+ *      
+ *      ===> 버튼, 마우스, 키보드 해당 기능들은 프로그램에 따라 다름으로 default로 처리 불가능
+ *           -----추상메소드사용됨------
+ *           예)
+ *           abstract class ActionListener
+ *           {
+ *              버튼클릭(); //기능1선언
+ *              더블클릭(); //기능2선언
+ *           }
+ *           abstract class MouseListener
+ *           {
+ *              마우스클릭_left(); //기능1선언
+ *              마우스클릭_right(); //기능2선언
+ *           }
+ *           abstract class KeyListener
+ *           {
+ *              키보드클릭(); //기능1선언
+ *              키보드UP(); //기능2선언
+ *           }
+ *           
+ *           //게임제작을 할때는 키보드 마우스 버튼이 동시에 움직여야하는데
+ *           //아~~근데 단일 상속시에는 마우스랑 버튼 키보드의 클래스를 동시에 못받는구나...
+ *           class Game1 extends ActionListener
+ *           class Game2 extends MouseListener
+ *           class Game3 extends KeyListener 
+ *           class Game4 extends Game1
+ *           class Game5 extends Game2
+ *           :
+ *           //이렇게 무한으로 받아야함...
+ *           
+ *           //그러나?
+ *           //인터페이스를 이용하여 다중상속으로 받은경우
+ *           class Game implements ActionListener,MouseListener,KeyListener
+ *           //이렇게 한줄로 해결할수 있음~~
+ *           
+ *           따라서 인터페이스가 추상클래스를 보안한점은
+ *           1) 다중 상속을 가능하게함
+ *           2) 구현이 안된 메소드만 사용
+ *           3) 변수 => 상수
+ *           4) 기본 => 다른 클래스에 영향이 없게 만든다
+ *           
+ *           그니까 인터페이스는 웹에서 방화벽같은 역할을 해주는거임
+ *           각각의 기능이 유기적으로 기능하되 에러를 중간에 막아줌
+ *           
+ *           
+ *           
+ *           
+ *           
+ *           
+ *      
  */
+
+//추상클래스 만들어봄
+abstract class 도형{
+	//선, 사각형, 원...뭘 그릴지 모르지 선언만해줌
+	public abstract void draw(); //:추상메소드(선언만해줌)=무조건구현(오버라이딩)해야함
+	
+	//선색 같은 바뀌지 않을 기본사항은 구현도 해줌
+	public void select(){
+		System.out.println("검정색을 사용한다.");//:default는 생성됨,추후필요시수정도가능
+	}
+}
+
+//아래는 추상클래스에서 상속받아서 구현하는 클래스 부분
+class 선 extends 도형{
+
+	//오버라이딩 부분 안가져오면 오류남!!!!
+	////:추상메소드(선언만해줌)=무조건구현(오버라이딩)해야함
+	@Override
+	public void draw() {
+		System.out.println("선을 그린다.");
+		
+	}
+}
+
+class 사각형 extends 도형{
+
+	@Override
+	public void draw() {
+		System.out.println("사각형을 그린다.");
+		
+	}
+}
+
+class 원 extends 도형{
+
+	@Override
+	public void draw() {
+		System.out.println("원을 그린다.");
+	}
+	public void select(){
+		System.out.println("빨간색을 사용한다.");//default값을 오버라이딩함
+	}
+}
+
+class 삼각형 extends 도형{
+
+	//오버라이딩 부분 안가져오면 오류남!!!!
+		////:추상메소드(선언만해줌)=무조건구현(오버라이딩)해야함
+	@Override
+	public void draw() {
+		System.out.println("삼각형을 그린다.");
+	}
+	public void select(){
+		System.out.println("파란색을 사용한다.");//default값을 오버라이딩함
+	}
+}
 public class MainClass_2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		System.out.print("도형을 선택하세요(1원,2사각형,3선,4사각형) : ");
+		int mode=scan.nextInt();
+		
+		//하나를 가지고 관련된 여러개의 클래스를 관리하는법)
+		//이렇게 서로 다른 클래스를 주소값만 바꿔서 실행하는 방법을 사용해야함
+		도형 a=null;
+		if(mode==1) {
+			a=new 원();
+		}
+		else if(mode==2) {
+			a=new 사각형();
+		}
+		else if(mode==3) {
+			a=new 선();
+		}
+		else if(mode==4) {
+			a=new 삼각형();
+		}
+		//그럼 아래if문과 다르게 공통부분 코딩을 줄일 수 있음
+		a.draw();
+		a.select();
+	
+		
+		/*
+		//이렇게 if문 남발하면 안됨;;
+		if(mode==1){
+			원 a=new 원();
+			a.draw();
+			a.select();
+		}
+		else if(mode==2){
+			사각형 a=new 사각형();
+			a.draw();
+			a.select();
+		}
+		else if(mode==3){
+			선 a=new 선();
+			a.draw();
+			a.select();
+		}
+		else if(mode==4){
+			삼각형 a=new 삼각형();
+			a.draw();
+			a.select();
+		}
+		*/
 
 	}
 
