@@ -43,7 +43,7 @@ package com.sist.exception;
  *    = 오라클에 연결이 안됨
  *    
  *       
- *     **Exception : 예외처리의 최상위 클래스
+ *     **Exception : 예외처리의 최상위 클래스 => 무슨에러인지 잘 모르겟으면 이거쓰면됨
  *           |
  *    -----------------------------------------
  *    |                                       |
@@ -53,18 +53,31 @@ package com.sist.exception;
  *      java.io => 파일명 틀리면 문제발생                               : 실행시 에러확인이 가능한거임 예를들어 1~10중에
  *              ♠ FileNotFoundException                             하나 입력하라 했을때 그외 숫자를 입력해야 발생하는 오류의 종류임
  *              ♠ IOException
- *      java.net => URL,IP주소 틀리면 문제발생
- *               ♠ MalformedURLException
- *      java.sql => 오라클,URL주소 틀리면 문제발생
- *               => 오라클 URL : SQLException
- *                  특히 오라클의 경우 연결포트번호!
- *                  연결시마다 번호가 증가함으로 
+ *      java.net => URL,IP주소 틀리면 문제발생      ♠ NumberFormatException : 문자열로 받아서 정수로 변경시 웹에서 가장 많이 발생하는 오류
+ *               ♠ MalformedURLException                              : http://localhost/main/main.jsp?page=10
+ *      java.sql => 오라클,URL주소 틀리면 문제발생                              => 웹에서는 데이터 전송할때 URL로 전송함
+ *               => 오라클 URL : SQLException                                자바는 메소드의 매개변수를 이용해서 전송
+ *                  특히 오라클의 경우 연결포트번호!   => 실수중에가장큰일 : 33대란(3월3일모든은행권이모두멈춤..보안업체신입사원1명이실수해서..)
+ *                  연결시마다 번호가 증가함으로                       String s="100,00" 이 문자열 하나로 10만원입금시 100만원으로 인식됨..
  *                  계속 확인해줘야함....
- *                  그래서 선생님의 오라클주소와
+ *                  그래서 선생님의 오라클주소와      ♠ ArrayIndexOfOutBoundsException : 배열이 인덱스 범위를 벗어나는 경우
  *                  몇번실패한..나의 오라클주소가
- *                  다를수가 있음....
- *      ♠ ClassNotFoundException
- *    
+ *                  다를수가 있음....            ♠ NullPointerException : null인 클래스를 사용한 경우
+ *      ♠ ClassNotFoundException                                      ----주소가 없는 경우
+ *    = 충돌의 위험이 있기 때문에 스레드는 예외처리 해줘야함                       : new로 주소배정이 안되었는데 가져다 쓴경우도 포함임
+ *      ♠ ~~필기놓침~~                          
+ *                                           ♠ ArithmeticExeption : 0으로 나눈 경우
+ *                                           
+ *                                           ♠ ClassCastException : 형변환오류
+ *     
+ *      ======> 당연한 이야기지만 에러 예상을 하는 능력을 키워야함
+ *      
+ *      예) 에러 예상 : 
+ *         문자열로 정수를 받아서 배열에 저장한 다음 나누기를 한다
+ *         ---------       --------      ----  예측되는 에러는 3개
+ *         NumberFormatException  |      ArithmeticExeption
+ *                         ArrayIndexOfOutBoundsException
+ *         따라서 사전에 에러를 방지하는 것 => 예측
  *                       
  */
 //형변환 오류 예제
@@ -81,10 +94,16 @@ class B extends A{
 public class MainClass_1 {
 
 	public static void main(String[] args) {
+		
+		/*
 		A a=new A();
 		B b=(B)a; //형변환
 		
 		b.aaa(); //오류남.....왜냐면 생성자A()에서 오버라이징값을 가져와야한다는 말이안되는상황이 벌어져서
+		*/
+		
+		//System.out.println(Interger.parseInt(" 10")); //띄어쓰기 때문에 NumberFormatException 오류남
+		//System.out.println(Interger.parseInt("10"));
 		
 		
 
