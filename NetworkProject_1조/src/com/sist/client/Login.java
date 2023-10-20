@@ -5,11 +5,11 @@ import java.awt.*;
 
 //값을 서버로 보내면 저장만 할 수 있도록 설계
 
-public class Login extends JPanel{
+public class Login extends JFrame{
 	
 	JLabel la1,la2,la3;
 	JTextField tf1;
-	JTextArea tf2;
+	JTextField tf2;
 	JRadioButton rb1,rb2;
 	JButton b1,b2;
 	
@@ -21,7 +21,7 @@ public class Login extends JPanel{
 		la3=new JLabel("성별");
 		
 		tf1=new JTextField();//<input type=text>
-		tf2=new JTextArea();
+		tf2=new JTextField();
 		
 		rb1=new JRadioButton("남자");//<input type=radio>
 		rb2=new JRadioButton("여자");
@@ -43,7 +43,7 @@ public class Login extends JPanel{
 		tf1.setBounds(75, 15, 150, 30);
 		
 		la2.setBounds(10, 50, 60, 30);
-		tf2.setBounds(10, 50, 150, 30);
+		tf2.setBounds(75, 50, 150, 30);
 		
 		la3.setBounds(10, 85, 60, 30);
 		rb1.setBounds(75, 85, 70, 30); //한번에 배치하려면 패널을 써야함/현재는 그룹만 묶어둔 상태
@@ -62,12 +62,12 @@ public class Login extends JPanel{
 		setVisible(true);
 		
 	}
-
 	/*
 	public static void main(String[] args) {
 		new Login();
 	}
 	*/
+	
 	
 	
 	

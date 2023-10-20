@@ -21,6 +21,9 @@ public class ClientMainForm extends JFrame implements ActionListener{
 	//배치를 위해 public
 	public ClientMainForm() {
 		
+		//레이아웃지원 : null로 설정시 지원안받는다는뜻(=직접배치)
+		setLayout(null);
+		
 		logo.setBounds(320, 20, 120, 60);
 		logo.setIcon(new ImageIcon(ImageChange.getImage(new ImageIcon("c:\\javaDev\\logo.png"), 120, 60)));
 		add(logo);
@@ -30,12 +33,10 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		add(cp);
 		
 		//매뉴구현판
-		//레이아웃지원 : null로 설정시 지원안받는다는뜻(=직접배치)
-		setLayout(null);
 		mp.setBounds(460, 40, 1120, 40);
 		add(mp);
 		setSize(1920, 1080);
-//		setVisible(true); //로그인이 먼저 보여야 하니까 주석처리
+		//setVisible(true); //로그인이 먼저 보여야 하니까 주석처리
 		setDefaultCloseOperation(EXIT_ON_CLOSE);//이부분이 있어야 창이 닫힘
 		setResizable(false);
 		
@@ -69,7 +70,9 @@ public class ClientMainForm extends JFrame implements ActionListener{
 			 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 			 
 		}catch(Exception ex) {}
+		System.out.println("111");
 	    new ClientMainForm();
+	    System.out.println("111");
 
 	}
 
