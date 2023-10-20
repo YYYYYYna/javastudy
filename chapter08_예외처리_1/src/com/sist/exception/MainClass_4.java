@@ -9,6 +9,11 @@ import java.awt.event.*;
  *      = 예외복구 : try-catch
  *           try => 정상수행문장
  *           catch => 에러문장 대체수행문장
+ *                    1)확인 => getMessage()
+ *                          => printStackTrace()
+ *                    2)복구 후 처음부터 수행
+ *                 : 여러번 사용 가능
+ *                 : 순서가 존재한다(계층구조)
  *           
  *      = 예외회피 : throws
  *      
@@ -33,7 +38,7 @@ public class MainClass_4 extends JFrame implements ActionListener{
 	public MainClass_4() {
 		
 		tf=new JTextField(10);//10글자만 입력하도록
-		//tf.setEditable(false);//일단 버튼 누르기 전이니까 비활성화 시킴
+		tf.setEditable(false);//일단 버튼 누르기 전이니까 비활성화 시킴
 		
 		ta=new JTextArea();
 		
