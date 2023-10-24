@@ -1,6 +1,6 @@
 package com.sist.lib;
 import java.util.HashSet;
-//Random클래스 실습
+//Random클래스 실습 : 메소드가 nextInt만 외우면됨
 import java.util.Random;
 import java.util.Set;
 /*
