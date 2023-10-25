@@ -57,7 +57,7 @@ public class MainClass_4 {
 		//2.데이터 첨부시에 원하는 데이터만 첨부가 가능하다
 		//3.분석이 쉬워진다
 		//4.제네릭 명명시 다른 데이터형 추가첨부는 불가능
-		//5.제네릭안에는 <클래스형>만 들어갈수 있음
+		//5.제네릭안에는 <클래스형>만 들어갈수 있음 => 기본형은 Wrapper
 		ArrayList<Sawon> list=new ArrayList<Sawon>(); 
 		list.add(new Sawon(1, "홍길동1", "개발부"));
 		list.add(new Sawon(2, "홍길동2", "영업부"));
