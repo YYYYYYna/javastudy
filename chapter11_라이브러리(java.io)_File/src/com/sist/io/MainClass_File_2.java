@@ -29,6 +29,7 @@ public class MainClass_File_2 {
                                    //: \구분자
             long size=file.length();
             String s=" ";
+            /*
             if(size/1024>0) {
             	s=(size/1024)+"KB";
             	}
@@ -37,6 +38,7 @@ public class MainClass_File_2 {
             		//s.size/1024+"MB";
                 }
             }
+            */
 		}catch(Exception ex)
 		{
 			
