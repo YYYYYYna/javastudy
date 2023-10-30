@@ -9,7 +9,12 @@ import org.jsoup.select.Elements;
 public class Watcha_MovieData {
 
 	public static void main(String[] args) {
+		//파일저장/생성
+		FileWriter fw=null;
 		try {
+			//파일저장/생성
+			fw=new FileWriter("c:\\java_data\\movie_watcha.txt",true);
+			
 			//전체페이지
 			Document doc=Jsoup.connect("https://movie.daum.net/premovie/watcha?flag=C").get();
 			Elements link=doc.select("div.box_movie ul.list_movieranking div.item_poster strong.tit_item a");
@@ -26,19 +31,18 @@ public class Watcha_MovieData {
 				Element title=doc2.selectFirst("div.info_detail h3.tit_movie span");
 				System.out.println(title.text());
 				
-				//상세페이지_etc 좌측
-				Elements etc_left=doc2.select("div.detail_cont dl.list_cont dt");
-				//System.out.println(etc_left.text());//상세페이지_etc 좌측 데이터 모음
+				//상세페이지_etc
+				Elements etc=doc2.select("div.detail_cont dl.list_cont dt");
+				//System.out.println(etc.text());//상세페이지_etc 데이터 모음
 				
 				String regdate="개봉일 없음",genre="장르 없음",nation="국가 없음",
-						grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적상영수 없음";
+						grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적관객수 없음";
 				
-				for(int j=0;j<etc_left.size();j++)
+				for(int j=0;j<etc.size();j++)
 				{
-					String ss=etc_left.get(j).text();
-					//System.out.println(ss);//상세페이지_etc 좌측 데이터 모음
+					String ss=etc.get(j).text();
+					//System.out.println(ss);//상세페이지_etc 데이터 모음
 					//개봉 1993.05.15 장르 판타지/로맨스/멜로 국가 프랑스, 서독 등급 12세이상관람가 러닝타임 128분 평점 8.6 누적관객 1,347명
-					
 					
 					if(ss.equals("개봉"))
 					{
@@ -86,10 +90,21 @@ public class Watcha_MovieData {
 					
 					//String regdate="개봉일 없음",genre="장르 없음",nation="국가 없음",
 					//		grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적상영수 없음";
+					
 				}
+				String msg=title.text()+"|"+regdate+"|"+genre+"|"+nation+"|"+grade+"|"+time+"|"+score+"|"+make_share+"\r\n";
+				fw.write(msg);
 			}
-			
-		}catch(Exception ex){}
+			System.out.println("파일 저장 완료!");
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally
+		{
+			try {
+				fw.close();
+			}catch(Exception ex) {}
+		}
 	}
 
 }
