@@ -70,9 +70,7 @@ public class ClientMainForm extends JFrame implements ActionListener{
 			 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 			 
 		}catch(Exception ex) {}
-		System.out.println("111");
 	    new ClientMainForm();
-	    System.out.println("111");
 
 	}
 

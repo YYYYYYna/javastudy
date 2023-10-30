@@ -30,7 +30,11 @@ public class BoardManager {
 		finally {
 			try {
 				fis.close();
-				ois.close();
+				if(ois!=null)
+				{
+					ois.close();
+				}
+				
 			} catch (IOException e) {}
 			
 		}
@@ -101,12 +105,21 @@ public class BoardManager {
 		}
 	}
 	
-	
 	//상세보기
 	//수정하기 (파일 저장을 다시하는 동일코딩 필요)
 	//삭제하기 (파일 저장을 다시하는 동일코딩 필요)
 	//검색하기
 	//자동 증가 번호 만들기 => 시퀀스
-			
+	public int boardSequence() {
+		int max=0;
+		for(BoardVO vo:blist)
+		{
+			if(vo.getNo()>max)
+			{
+				max=vo.getNo();
+			}
+		}
+		return max+1;
+	}
 
 }

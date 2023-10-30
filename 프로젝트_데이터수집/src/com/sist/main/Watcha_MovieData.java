@@ -31,15 +31,23 @@ public class Watcha_MovieData {
 				Element title=doc2.selectFirst("div.info_detail h3.tit_movie span");
 				System.out.println(title.text());
 				
+				
+				//상세페이지_포스터
+				Element image1=doc2.selectFirst("article#mainContent div.info_poster span.bg_img");
+				String image="이미지 없음";
+				image=image1.attr("style");
+				image=image.substring(image.indexOf("(")+1, image.lastIndexOf(")"));
+				System.out.println(image);
+				
 				//상세페이지_etc
 				Elements etc=doc2.select("div.detail_cont dl.list_cont dt");
 				//System.out.println(etc.text());//상세페이지_etc 데이터 모음
 				
 				String regdate="개봉일 없음",genre="장르 없음",nation="국가 없음",
-						grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적관객수 없음";
+						grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적관객 없음";
 				
 				for(int j=0;j<etc.size();j++)
-				{
+				{	
 					String ss=etc.get(j).text();
 					//System.out.println(ss);//상세페이지_etc 데이터 모음
 					//개봉 1993.05.15 장르 판타지/로맨스/멜로 국가 프랑스, 서독 등급 12세이상관람가 러닝타임 128분 평점 8.6 누적관객 1,347명
@@ -92,7 +100,7 @@ public class Watcha_MovieData {
 					//		grade="등급 없음",time="상영시간 없음",score="평점 없음",make_share="누적상영수 없음";
 					
 				}
-				String msg=title.text()+"|"+regdate+"|"+genre+"|"+nation+"|"+grade+"|"+time+"|"+score+"|"+make_share+"\r\n";
+				String msg=title.text()+"|"+regdate+"|"+image+"|"+genre+"|"+nation+"|"+grade+"|"+time+"|"+score+"|"+make_share+"\r\n";
 				fw.write(msg);
 			}
 			System.out.println("파일 저장 완료!");
