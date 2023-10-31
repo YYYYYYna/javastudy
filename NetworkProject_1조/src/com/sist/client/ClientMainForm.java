@@ -3,20 +3,21 @@ package com.sist.client;
 import javax.swing.*;
 
 import com.sist.common.ImageChange;
+import com.sist.manager.FoodManager;
+import com.sist.vo.FoodCategoryVO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ClientMainForm extends JFrame implements ActionListener{
 	
 	MenuPanel mp=new MenuPanel();
-	
 	ControlPanel cp=new ControlPanel();
-	
 	JLabel logo=new JLabel();
-	
 	Login login=new Login();
+	FoodManager fm=new FoodManager();
 	
 	//배치를 위해 public
 	public ClientMainForm() {
@@ -61,6 +62,10 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		mp.b6.addActionListener(this);
 		
 		login.b1.addActionListener(this);
+		
+		ArrayList<FoodCategoryVO> list=fm.foodCategoryData(1);
+		cp.hp.cardInit();
+		cp.hp.cardPrint(list);
 	}
 	
 	public static void main(String[] args) {
@@ -79,6 +84,10 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		if(e.getSource()==mp.b1)
 		{
 			cp.card.show(cp, "home");
+		}
+		else if(e.getSource()==mp.b2)
+		{
+			
 		}
 		else if(e.getSource()==mp.b3)
 		{

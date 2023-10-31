@@ -61,13 +61,16 @@ public class Car_Data_page {
 					System.out.println(color.text());
 					
 					//전체페이지_변속기:transmission(String)
-					Element transmission=docSub.select("div#container div.detail_head div.head_info span.opt").get(1);
+					Element transmission=docSub.select("div#container div.detail_head div.head_info span.opt").get(3);
 					System.out.println(transmission.text());
 					
 					//전체페이지_연료:fuel(String)
-					Element fuel=docSub.select("div#container div.detail_head div.head_info span.opt").get(1);
+					Element fuel=docSub.select("div#container div.detail_head div.head_info span.opt").get(4);
 					System.out.println(fuel.text());
 					
+					//전체페이지_연비:efficiency(0000cc)
+					Element efficiency=docSub.select("div#container div.detail_head div.head_info span.opt").get(5);
+					System.out.println(efficiency.text());
 					
 					
 					
