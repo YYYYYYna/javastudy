@@ -20,6 +20,7 @@ public class PosterCard extends JPanel{
 		add(tLa);
 		
 		try {//URL주소 사용해서 try-catch 사용한듯
+			
 			URL url=new URL(vo.getPoster().substring(0, vo.getPoster().lastIndexOf("?")));//?뒤의 jpg부분만 잘라옴
 			Image image=ImageChange.getImage(new ImageIcon(url), 280, 150);
 			poLa.setIcon(new ImageIcon(image));
