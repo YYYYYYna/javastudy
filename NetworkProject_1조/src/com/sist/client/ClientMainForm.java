@@ -12,9 +12,9 @@ public class ClientMainForm extends JFrame implements ActionListener{
 	
 	MenuPanel mp=new MenuPanel();
 	
-	JLabel logo=new JLabel();
-	
 	ControlPanel cp=new ControlPanel();
+	
+	JLabel logo=new JLabel();
 	
 	Login login=new Login();
 	

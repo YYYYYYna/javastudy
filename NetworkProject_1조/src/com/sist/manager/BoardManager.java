@@ -106,8 +106,99 @@ public class BoardManager {
 	}
 	
 	//상세보기
+	public BoardVO boardDetailData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		
+		for(int i=0;i<blist.size();i++)
+		{
+			BoardVO bVO=blist.get(i);
+			if(bVO.getNo()==no)
+			{
+				bVO.setHit(bVO.getHit()+1); //1번누르면 조회수 1증가
+				vo=bVO;
+				fileSave();
+				break;
+			}
+		}
+		return vo;
+	}
 	//수정하기 (파일 저장을 다시하는 동일코딩 필요)
+	public BoardVO boardUpdateData(int no)
+	{
+		BoardVO vo=new BoardVO();
+		for(BoardVO bVO:blist)
+		{
+			if(bVO.getNo()==no)
+			{
+				vo=bVO;
+				break;
+			}
+		}
+		return vo;
+	}
+	public String boardUpdate(BoardVO vo)
+	{
+		String result=""; //Yes or NO
+		for(int i=0;i<blist.size();i++)
+			//remove(index), set(index) 그외 for-each
+		{
+			BoardVO pVO=blist.get(i);
+			if(pVO.getNo()==vo.getNo())
+			  //서버저장값      서버전송값
+			{
+				if(pVO.getPwd().equals(vo.getPwd()))
+				{
+					//비밀번호가 맞은상태 => 수정해줘야함
+					result="YES";
+					//blist.set(i, vo); //메모리 => 수정되는대상
+					pVO.setContent(vo.getContent());
+					pVO.setName(vo.getName());
+					pVO.setSubject(vo.getSubject());
+					fileSave(); //파일 => 수정된 내용을 파일에 저장
+					//메모리==파일로 만들어줘야함
+				}
+				else
+				{
+					//비밀번호가 틀린상태
+					result="NO";
+				}
+				break;
+			}
+		}
+		return result;
+	}
+	
 	//삭제하기 (파일 저장을 다시하는 동일코딩 필요)
+	//ArrayList제어와 파일제어를 동일하게 하는 버릇들이기
+	public String boardDelete(int no,String pwd)
+	{
+		String result="";// y/n중 하나가 출력됨
+		for(int i=0;i<blist.size();i++)
+		{
+			BoardVO vo=blist.get(i);
+			
+			if(vo.getNo()==no)
+			{
+				if(vo.getPwd().equals(pwd))
+				{
+					//비밀번호 일치=>삭제대상
+					result="YES";
+					blist.remove(i);//ArrayList도 삭제함
+					fileSave();//파일도 삭제함
+				}
+				else
+				{
+					//비밀번호 틀린상태
+					result="NO";
+				}
+				break;
+			}
+		}
+		return result;
+	}
+	
+	
 	//검색하기
 	//자동 증가 번호 만들기 => 시퀀스
 	public int boardSequence() {
