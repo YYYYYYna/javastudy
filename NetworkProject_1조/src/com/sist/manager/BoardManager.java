@@ -54,13 +54,21 @@ public class BoardManager {
 		 * 2page = 10~19
 		 * : 
 		 */
-		for(int i=0;i<blist.size();i++)
+		
+		//최신글부터 역순출력
+		 ArrayList<BoardVO> temp=new ArrayList<BoardVO>();
+		 for(int i=blist.size()-1;i>=0;i--)
+		 {
+		     temp.add(blist.get(i));
+		 }
+		 
+		 for(int i=0;i<temp.size();i++)
 		{
 			//10개 넘어가면 스킵하는 형식으로 페이지 나눔
 			if(j<10 && i>=pagecnt)
 			{
 				//아래 소스가 "페이지 나누는법"
-				BoardVO vo=blist.get(i);
+				 BoardVO vo=temp.get(i);
 				list.add(vo);
 				j++;
 				//그러나 해당 방법은 속도가 느려지기 때문에 
