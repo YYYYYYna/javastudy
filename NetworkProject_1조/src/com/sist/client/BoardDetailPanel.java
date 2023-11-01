@@ -21,22 +21,22 @@ public class BoardDetailPanel extends JPanel implements ActionListener{
     BoardManager bm=new BoardManager();
     public BoardDetailPanel(ControlPanel cp)
     {
-   	     this.cp=cp;
-   	     titleLa=new JLabel("내용보기");
-    	 titleLa.setFont(new Font("맑은 고딕",Font.BOLD,45));
-    	 titleLa.setHorizontalAlignment(JLabel.CENTER);
+    	this.cp=cp;
+      	 titleLa=new JLabel("내용보기");
+       	 titleLa.setFont(new Font("맑은 고딕",Font.BOLD,35));
+       	 titleLa.setHorizontalAlignment(JLabel.CENTER);
     	 
     	 la1=new JLabel("번호");
     	 la1.setHorizontalAlignment(JLabel.CENTER);
     	 
     	 la2=new JLabel("작성일");
-   	 la2.setHorizontalAlignment(JLabel.CENTER);
+   	     la2.setHorizontalAlignment(JLabel.CENTER);
    	 
-   	 la3=new JLabel("이름");
+   	     la3=new JLabel("이름");
     	 la3.setHorizontalAlignment(JLabel.CENTER);
     	 
     	 la4=new JLabel("조회수");
-   	 la4.setHorizontalAlignment(JLabel.CENTER);
+   	     la4.setHorizontalAlignment(JLabel.CENTER);
    	 
    	     la5=new JLabel("제목");
     	 la5.setHorizontalAlignment(JLabel.CENTER);
@@ -48,33 +48,34 @@ public class BoardDetailPanel extends JPanel implements ActionListener{
     	 hitLa=new JLabel();
     	 
     	 pane=new JTextPane();
+    	 pane.setEditable(false);
     	 JScrollPane js=new JScrollPane(pane);
     	 
-    	 b1=new JButton("수정");
-    	 b2=new JButton("삭제");
-    	 b3=new JButton("목록");
+    	 b1=new JButton("     수정     ");
+    	 b2=new JButton("     삭제     ");
+    	 b3=new JButton("     목록     ");
     	 
     	 //배치 
     	 setLayout(null);
-    	 titleLa.setBounds(10, 15, 720, 60);
+    	 titleLa.setBounds(320, 15, 1260, 50);
   	     add(titleLa);
   	    
   	     la1.setBounds(10, 85, 60, 30);
-  	     noLa.setBounds(75, 85, 300, 30);
-  	     la2.setBounds(385, 85, 60, 30);
-	     dateLa.setBounds(450, 85, 300, 30);
-  	     add(la1);add(noLa);add(la2);add(dateLa);
+	     noLa.setBounds(75, 85, 300, 30);
+	     la2.setBounds(385, 85, 60, 30);
+	     dateLa.setBounds(400, 150, 300, 30);
+	     add(la1);add(noLa);add(la2);add(dateLa);
 	     
 	     la3.setBounds(10, 120, 60, 30);
-  	     nameLa.setBounds(75, 120, 300, 30);
-  	     la4.setBounds(385, 120, 60, 30);
-	     hitLa.setBounds(450, 120, 300, 30);
+  	     nameLa.setBounds(320, 150, 100, 30);
+  	     la4.setBounds(1480, 150, 80, 30);
+	     hitLa.setBounds(1545, 150, 100, 30);
 	     
 	     add(la3);add(nameLa);add(la4);add(hitLa);
-	     la5.setBounds(10, 155, 60, 30);
-  	     subLa.setBounds(75, 155, 615, 30);
+         la5.setBounds(10, 155, 60, 30);
+  	     subLa.setBounds(320, 110, 1260, 30);
   	     add(la5);add(subLa);
-  	     js.setBounds(10, 190, 675, 150);
+  	     js.setBounds(320, 190, 1260, 500);
   	     add(js);
   	     
   	     JPanel p=new JPanel();

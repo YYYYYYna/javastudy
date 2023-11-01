@@ -96,6 +96,27 @@ public class FoodManager {
 			}catch(Exception ex) {}
 		}
 		
+		//2차실행부분
+		   //FileInputStream fis=null;
+		  // ObjectInputStream ois=null;
+		   try
+		   {
+			   fis=new FileInputStream("c:\\java_data\\fh.txt");
+			   ois=new ObjectInputStream(fis);
+			   flist=(ArrayList<FoodHouseVO>)ois.readObject();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   try
+			   {
+				   fis.close();
+				   ois.close();
+			   }catch(Exception ex) {}
+		   }
+		
 	}
 	/*
 	public static void main(String[] args) {
@@ -140,4 +161,61 @@ public class FoodManager {
 		}
 		return list;
 	}
+
+	public FoodCategoryVO categoryInfoData(String title)
+	{
+		FoodCategoryVO vo=new FoodCategoryVO();
+		for(FoodCategoryVO fvo:clist)
+		{
+			if(fvo.getTitle().equals(title))
+			{
+				vo=fvo;
+				break;
+			}
+		}
+		return vo;
+	}
+	 public ArrayList<FoodHouseVO> foodHouseListData(int cno)
+	   {
+		 /*
+		   System.out.println(flist.size());
+		   return flist;
+		   */
+		 ArrayList<FoodHouseVO> list=new ArrayList<FoodHouseVO>();
+		 for(FoodHouseVO fvo:flist)
+		 {
+			 if(fvo.getCno()==cno) {
+				 list.add(fvo);
+			 }
+		 }
+		 return list;
+	   }
+	 
+	 public FoodHouseVO foodInfoData(int fno)
+	 {
+		 FoodHouseVO vo=new FoodHouseVO();
+		 for(FoodHouseVO fvo:flist)
+		 {
+			 if(fvo.getFno()==fno)
+			 {
+				 vo=fvo;
+				 break;
+			 }
+		 }
+		 return vo;
+	 }
+	 
+	 public ArrayList<FoodHouseVO> foodFindData(String title)
+	 {
+		 ArrayList<FoodHouseVO> list=new ArrayList<FoodHouseVO>();
+		 for(FoodHouseVO fvo:flist)
+		 {
+			 if(fvo.getName().contains(title))
+			 {
+				 list.add(fvo);
+				 //break;
+			 }
+		 }
+		 return list;
+	 }
 }

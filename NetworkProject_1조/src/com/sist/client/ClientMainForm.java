@@ -63,8 +63,7 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		
 		login.b1.addActionListener(this);
 		
-		ArrayList<FoodCategoryVO> list=fm.foodCategoryData(1);
-		cp.hp.cardInit();
+		ArrayList<FoodCategoryVO> list = fm.foodCategoryData(1);
 		cp.hp.cardPrint(list);
 	}
 	
@@ -87,7 +86,7 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		}
 		else if(e.getSource()==mp.b2)
 		{
-			
+			cp.card.show(cp,"find");
 		}
 		else if(e.getSource()==mp.b3)
 		{
