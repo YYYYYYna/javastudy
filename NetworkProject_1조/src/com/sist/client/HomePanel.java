@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import com.sist.manager.*;
+import com.sist.manager.FoodManager;
 import com.sist.vo.FoodCategoryVO;
 import com.sist.vo.FoodHouseVO;
 

@@ -16,9 +16,8 @@ public class MovieOttVO implements Serializable{
 	private String nation;
 	private String grade;
 	private String time;
-	private String score;
+	private double score;
 	private String make_share;
-	
 	
 	public int getMno() {
 		return mno;
@@ -68,10 +67,10 @@ public class MovieOttVO implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getScore() {
+	public double getScore() {
 		return score;
 	}
-	public void setScore(String score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 	public String getMake_share() {
@@ -80,6 +79,9 @@ public class MovieOttVO implements Serializable{
 	public void setMake_share(String make_share) {
 		this.make_share = make_share;
 	}
+	
+	
+	
 	
 	
 	
