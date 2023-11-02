@@ -61,5 +61,7 @@ public class ChatPanel extends JPanel{
 		p.setBounds(1030, 560, 550, 265);
 		add(p);
 		
+
+		
 	}
 }

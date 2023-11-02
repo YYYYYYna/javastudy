@@ -33,7 +33,7 @@ public class Server implements Runnable{
     //클라이언트 정보 저장 => id,name,sex,ip,port
 	private Vector<Client> waitVc=new Vector<Client>();
 	private ServerSocket ss;
-	private final int PORT=11111; //포트번호를 지정해야 연결가능:우리는11111
+	private final int PORT=11116; //포트번호를 지정해야 연결가능:우리는11111
 	
 	//서버가동 ==> 한번만 시행 가능 //50명 까지만 접근 가능!!
 	public Server() {
@@ -41,7 +41,10 @@ public class Server implements Runnable{
 			ss=new ServerSocket(PORT);//IP는 자동인식해줌
 			       //bind() => listen() 둘이 동시에 들어감
 			System.out.println("Server Start...");
-		}catch(Exception ex) {}
+		}catch(Exception ex) {
+			System.out.println("fail");
+			ex.printStackTrace();
+		}
 	}
 	
 	//접속시 처리
@@ -126,6 +129,31 @@ public class Server implements Runnable{
 					{
 						String data=st.nextToken();
 						messageAll(Funtion.WAITCHAT+"|["+name+"]"+data);
+					}
+					break;
+					//사용자 정보 보기
+					case Funtion.INFO:{
+						String data=st.nextToken();
+						for(Client client:waitVc) 
+						{
+							if(data.equals(client.id)) {
+								messegeTo(Funtion.LOGIN+"|"+client.id+"|"+client.name+"|"+client.sex+"|"+client.pos);
+								break;
+							}
+						}
+					}
+					break;
+					//메세지보내기
+					case Funtion.MSGSEND:{
+						String yourid=st.nextToken();
+						String content=st.nextToken();
+						for(Client user:waitVc) {
+							if(yourid.equals(user.id)) {
+								String msgStr=Funtion.MSGSEND+"|"+id+"|"+content;
+								user.messegeTo(msgStr);
+								break;
+							}
+						}
 					}
 					break;
 					case Funtion.EXIT:

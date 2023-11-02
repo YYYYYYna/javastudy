@@ -115,6 +115,7 @@ public class MovieDetailPanel extends JPanel implements ActionListener {
 				
 				b.addActionListener(this);
 	}
+	
 	public void MoviePrint(MovieReservationVO vo) {
 		try {
 			titleLa.setText(vo.getTitle());

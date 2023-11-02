@@ -13,9 +13,11 @@ import java.net.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class ClientMainForm extends JFrame implements ActionListener,Runnable{
+public class ClientMainForm extends JFrame implements ActionListener,Runnable,MouseListener{
 	
 	MenuPanel mp=new MenuPanel();
 	ControlPanel cp=new ControlPanel();
@@ -30,6 +32,15 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 	OutputStream out;
 	//3.데이터받기:수신
 	BufferedReader in;
+	
+	// ID 저장
+    String myId;
+    // 테이블 선택 인덱스
+    int selectRow=-1;
+    
+    // 쪽지 클래스
+    SendMessage sm=new SendMessage();
+    GetMessage rm=new GetMessage();
 	
 	//배치를 위해 public
 	public ClientMainForm() {
@@ -84,6 +95,16 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 		
 		//윈도우창의 x표시를 비활성화 시킴
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
+		//사용자 정보보기
+		cp.cp.b4.addActionListener(this);
+		
+		// 쪽지 등록
+    	sm.b1.addActionListener(this);
+    	sm.b2.addActionListener(this);
+    	rm.b1.addActionListener(this);
+    	rm.b2.addActionListener(this);
+
 	}
 	
 	public static void main(String[] args) {
@@ -184,6 +205,57 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 				out.write((Funtion.EXIT+"\n").getBytes());//=허락을 받아야 가능함
 			}catch(Exception ex){}
 		}
+		//메세지보내기
+		else if(e.getSource() == cp.cp.b3) {
+			int row = cp.cp.table2.getSelectedRow();
+			sm.tf.setText(cp.cp.table2.getValueAt(row, 0).toString());
+			sm.tf.setEditable(false);
+			sm.ta.setText("");
+			sm.setVisible(true);
+		}
+		else if(e.getSource()==sm.b1) {
+			String id = sm.tf.getText();
+			String content = sm.ta.getText();
+			if(content.length()<1) {
+				sm.ta.requestFocus();
+				return;
+			}
+			
+			String msg = Funtion.MSGSEND+"|"+id+"|"+content+"\n";
+			
+			try {
+				out.write(msg.getBytes());
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+			sm.setVisible(false);
+		}
+		else if(e.getSource() == sm.b2) { //취소
+			sm.setVisible(false);
+		}
+		else if(e.getSource() == rm.b1) { // 답장하기
+			sm.tf.setText(rm.tf.getText()); 
+			sm.ta.setText("");
+			sm.setVisible(true);
+			rm.setVisible(false);
+			
+		}
+		else if(e.getSource() == rm.b2) { // 취소
+			rm.setVisible(false);
+		}
+		
+		//사용자정보보기
+		else if(e.getSource() == cp.cp.b4) { // 정보 보기
+			int row = cp.cp.table2.getSelectedRow();
+			String id = cp.cp.table2.getValueAt(row, 0).toString();
+			String msg = Funtion.INFO+"|"+id+"|"+"\n";
+			try {
+				out.write(msg.getBytes());
+			}catch (Exception ex) {
+				System.out.println("사용자정보보기오류");
+				ex.printStackTrace();
+			}
+		}
 		
 	}
 	
@@ -266,9 +338,64 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 					}
 				}
 				break;
+				case Funtion.INFO:{
+					String data="아이디:"+st.nextToken()+"\n"
+						     +"이름:"+st.nextToken()+"\n"
+						     +"성별:"+st.nextToken();
+					JOptionPane.showMessageDialog(this, data);
+				}
+				break;
 				}
 			}
 		}catch(Exception ex) {}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		if(e.getSource()==cp.cp.table2)
+		{
+			//if(e.getClickCount()==2)// 더블 클릭
+			//{
+			    selectRow=cp.cp.table2.getSelectedRow();
+				String id=cp.cp.table2.getValueAt(selectRow, 0).toString();
+				//JOptionPane.showMessageDialog(this, "선택된 ID:"+id);
+				if(id.equals(myId))// 본인이면 
+				{
+					cp.cp.b1.setEnabled(false);
+					cp.cp.b2.setEnabled(false);
+				}
+				else //본인이 아닌 경우 
+				{
+					cp.cp.b1.setEnabled(true);
+					cp.cp.b2.setEnabled(true);
+				}
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

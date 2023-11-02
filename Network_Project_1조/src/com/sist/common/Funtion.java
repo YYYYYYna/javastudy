@@ -7,6 +7,8 @@ public class Funtion {
 	public static final int LOGIN=100;
 	public static final int MYLOG=110;//MY가 붙은 부분은 예를 들어 로그인이라면 그 이후 실행된 처리를 뜻함
 	public static final int WAITCHAT=200;
+	public static final int MSGSEND=300;
+	public static final int INFO=400;//사용자보기
 	public static final int EXIT=900;
 	public static final int MYEXIT=910;//MY로 나누는 이유는 실제 "나간"사람과 "나가는중인"사람이 다 다르기 때문
 	//모든 내용이 서버에서 지시를 내리고 => 클라이언트가 수행 => 같은 내용(공유)
