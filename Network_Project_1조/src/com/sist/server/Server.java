@@ -33,7 +33,7 @@ public class Server implements Runnable{
     //클라이언트 정보 저장 => id,name,sex,ip,port
 	private Vector<Client> waitVc=new Vector<Client>();
 	private ServerSocket ss;
-	private final int PORT=11116; //포트번호를 지정해야 연결가능:우리는11111
+	private final int PORT=1024; //포트번호를 지정해야 연결가능:우리는11111
 	
 	//서버가동 ==> 한번만 시행 가능 //50명 까지만 접근 가능!!
 	public Server() {

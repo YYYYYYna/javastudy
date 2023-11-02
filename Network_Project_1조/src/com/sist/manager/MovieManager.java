@@ -122,19 +122,6 @@ public class MovieManager {
 			   }
 			   return list;}
 		
-		//사용자보기
-		public void printDetails(LectureVO vo) {
-			Image img = ImageChange.getImage(InflearnSystem.imgList.get(vo.getId()-1), 530, 350);
-			imgLa.setIcon(new ImageIcon(img));
-			titleLa.setText(vo.getTitle());
-			instructorLa.setText(vo.getInstructor());
-			priceLa.setText(vo.getPrice());
-			contentLa.setText(vo.getContent());
-			levelLa.setText(vo.getLevel());
-			starLa.setText(Double.toString(vo.getStar()));
-			linkLa.setText(vo.getLink());
-			cp.card.show(cp, "detail");
-	    }
 			   
 		
 }

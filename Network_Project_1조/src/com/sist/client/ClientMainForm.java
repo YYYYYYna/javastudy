@@ -39,6 +39,7 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable,Mo
     int selectRow=-1;
     
     // 쪽지 클래스
+    String myid;
     SendMessage sm=new SendMessage();
     GetMessage rm=new GetMessage();
 	
@@ -100,6 +101,8 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable,Mo
 		cp.cp.b4.addActionListener(this);
 		
 		// 쪽지 등록
+		cp.cp.table1.addMouseListener(this);
+		cp.cp.b3.addActionListener(this);//쪽지보내기
     	sm.b1.addActionListener(this);
     	sm.b2.addActionListener(this);
     	rm.b1.addActionListener(this);
@@ -263,7 +266,7 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable,Mo
 	public void connect(String id,String name,String sex)
 	{
 		try {           //이부분이 로컬호스트부분,포트번호 가 적혀야함
-			s=new Socket("192.168.0.105",11111);
+			s=new Socket("192.168.0.124",1024);
 			out=s.getOutputStream();
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 			
@@ -336,6 +339,14 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable,Mo
 							break;
 						}
 					}
+				}
+				break;
+				case Funtion.MSGSEND:{
+					String id = st.nextToken();
+					String content = st.nextToken();
+					rm.tf.setText(id);
+					rm.ta.setText(content);
+					rm.setVisible(true);
 				}
 				break;
 				case Funtion.INFO:{
