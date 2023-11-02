@@ -11,6 +11,7 @@ public class ChatPanel extends JPanel{
 	JTextArea pane;
 	JTextField tf;
 	JButton b1,b2,b3,b4,b5,b6;
+	JScrollBar bar;
 	
 	public ChatPanel() {
 		
@@ -37,6 +38,7 @@ public class ChatPanel extends JPanel{
 		pane.setEditable(false);//채팅 비활성화
 		js3.setBounds(1030, 15, 550, 500);
 		add(js3);
+		bar=js3.getVerticalScrollBar();//채팅이 많아지면 스크롤 생성
 		
 		tf=new JTextField();
 		tf.setBounds(1030, 520, 550, 30);

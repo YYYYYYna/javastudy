@@ -33,7 +33,7 @@ public class Server implements Runnable{
     //클라이언트 정보 저장 => id,name,sex,ip,port
 	private Vector<Client> waitVc=new Vector<Client>();
 	private ServerSocket ss;
-	private final int PORT=3355; //포트번호를 지정해야 연결가능:우리는11111
+	private final int PORT=11111; //포트번호를 지정해야 연결가능:우리는11111
 	
 	//서버가동 ==> 한번만 시행 가능 //50명 까지만 접근 가능!!
 	public Server() {
@@ -125,12 +125,31 @@ public class Server implements Runnable{
 					case Funtion.WAITCHAT: //해당 case의 function하나가 웹에서 JSP하나를 담당한다고 보면됨
 					{
 						String data=st.nextToken();
-						messageAll(Funtion.WAITCHAT+"|"+data);
+						messageAll(Funtion.WAITCHAT+"|["+name+"]"+data);
 					}
 					break;
 					case Funtion.EXIT:
 					{
-						
+						messageAll(Funtion.WAITCHAT+"|[알림 →] "+name+"님 퇴장했습니다.");
+						messageAll(Funtion.EXIT+"|"+id);
+						//이제 퇴장한 id를 테이블에서 제거
+						for(int i=0;i<waitVc.size();i++)
+						{
+							//퇴장한 아이디 찾기
+							Client client=waitVc.get(i);
+							//찾은 아이디 삭제
+							if(client.id.equals(id))
+							{
+								messegeTo(Funtion.MYEXIT+"|");//해당사용자 종료
+								waitVc.remove(i);//해당 아이디 삭제
+								//==>이 원리라면 동일 아이디는 한명이 퇴장시 같이 퇴장되니 주의...
+								try {
+									//송수신종료
+									in.close();
+									out.close();
+								}catch(Exception ex) {}
+							}
+						}
 					}
 					}
 				}

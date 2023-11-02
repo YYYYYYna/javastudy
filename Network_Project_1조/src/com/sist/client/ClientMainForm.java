@@ -77,6 +77,13 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 		
 		ArrayList<MovieReservationVO> list=mm.MovieReservationData(1);
 		cp.hp.cardPrint(list);
+		
+		//채팅등록
+		cp.cp.tf.addActionListener(this);
+		cp.cp.b6.addActionListener(this);//=프로그램 종료(채팅종료)
+		
+		//윈도우창의 x표시를 비활성화 시킴
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 	
 	public static void main(String[] args) {
@@ -114,7 +121,12 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 		}
 		else if(e.getSource()==mp.b6)
 		{
-			System.exit(0);
+			//System.exit(0);//그냥 종료하는게 아니라
+			
+			//창 닫기시 서버에서도 나오는걸로 코딩바꿈
+			try {
+				out.write((Funtion.EXIT+"|\n").getBytes());
+			}catch(Exception ex) {}
 		}
 		else if(e.getSource()==login.b1)
 		{
@@ -152,13 +164,34 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 			connect(id, name, sex);
 		}
 		
+		else if(e.getSource()==cp.cp.tf)
+		{
+			String msg=cp.cp.tf.getText();
+			if(msg.trim().length()<1)
+			{
+				return;
+			}
+			//채팅메세지 전송
+			try {
+				out.write((Funtion.WAITCHAT+"|"+msg+"\n").getBytes());
+			}catch(Exception ex) {}
+			cp.cp.tf.setText("");
+		}
+		else if(e.getSource()==cp.cp.b6)
+		{
+			try {
+				//서버를 나간다는 요청
+				out.write((Funtion.EXIT+"\n").getBytes());//=허락을 받아야 가능함
+			}catch(Exception ex){}
+		}
+		
 	}
 	
 	//서버연결부분
 	public void connect(String id,String name,String sex)
 	{
 		try {           //이부분이 로컬호스트부분,포트번호 가 적혀야함
-			s=new Socket("localhost",3355);
+			s=new Socket("192.168.0.105",11111);
 			out=s.getOutputStream();
 			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
 			
@@ -208,7 +241,29 @@ public class ClientMainForm extends JFrame implements ActionListener,Runnable{
 				break;
 				case Funtion.WAITCHAT:
 				{
+					cp.cp.bar.setValue(cp.cp.bar.getMaximum());;
 					cp.cp.pane.append(st.nextToken()+"\n");
+				}
+				break;
+				case Funtion.MYEXIT:
+				{
+					System.exit(0);//퇴장시 나의 창 종료
+				}
+				break;
+				case Funtion.EXIT:
+				{
+					String id=st.nextToken();//퇴장시 더이상 받을값이 없음
+					//이번에는 데이터를 받는게 아닌 삭제함
+					for(int i=0;i<cp.cp.model2.getRowCount();i++)
+					             //=>모델안에 출력한 모든 값을 뜻함
+					{
+						String temp=cp.cp.model2.getValueAt(i, 0).toString();
+						if(id.equals(temp))
+						{
+							cp.cp.model2.removeRow(i);//접속시 보냈던 데이터 삭제
+							break;
+						}
+					}
 				}
 				break;
 				}
